@@ -1,0 +1,580 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Codex 客户端系统入门图文教程大纲</title>
+  <style>
+    :root {
+      --bg: #f6f7f8;
+      --panel: #ffffff;
+      --text: #202124;
+      --muted: #59616b;
+      --line: #d8dde3;
+      --accent: #0b7285;
+      --accent-2: #9a3412;
+      --soft: #eaf7fa;
+      --soft-2: #fff7ed;
+      --code: #18212f;
+    }
+
+    * { box-sizing: border-box; }
+
+    body {
+      margin: 0;
+      font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      color: var(--text);
+      background: var(--bg);
+      line-height: 1.65;
+    }
+
+    a {
+      color: var(--accent);
+      text-decoration: none;
+    }
+
+    a:hover { text-decoration: underline; }
+
+    .hero {
+      padding: 52px 24px 34px;
+      border-bottom: 1px solid var(--line);
+      background:
+        linear-gradient(135deg, rgba(11, 114, 133, .13), rgba(154, 52, 18, .08)),
+        var(--panel);
+    }
+
+    .hero-inner,
+    .content {
+      max-width: 1140px;
+      margin: 0 auto;
+    }
+
+    .eyebrow {
+      margin: 0 0 12px;
+      color: var(--accent);
+      font-size: 14px;
+      font-weight: 750;
+      letter-spacing: 0;
+    }
+
+    h1 {
+      margin: 0;
+      max-width: 900px;
+      font-size: clamp(34px, 5vw, 58px);
+      line-height: 1.08;
+      letter-spacing: 0;
+    }
+
+    .subtitle {
+      max-width: 790px;
+      margin: 18px 0 0;
+      color: var(--muted);
+      font-size: 18px;
+    }
+
+    .meta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 24px;
+    }
+
+    .pill {
+      display: inline-flex;
+      align-items: center;
+      min-height: 32px;
+      padding: 5px 12px;
+      border: 1px solid var(--line);
+      border-radius: 999px;
+      background: rgba(255, 255, 255, .74);
+      color: #24313d;
+      font-size: 14px;
+      white-space: nowrap;
+    }
+
+    .content {
+      display: grid;
+      grid-template-columns: 270px minmax(0, 1fr);
+      gap: 32px;
+      padding: 32px 24px 64px;
+    }
+
+    nav {
+      position: sticky;
+      top: 20px;
+      align-self: start;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    nav h2 {
+      margin: 0 0 12px;
+      font-size: 15px;
+    }
+
+    nav a {
+      display: block;
+      padding: 7px 0;
+      color: var(--muted);
+      font-size: 14px;
+    }
+
+    main { min-width: 0; }
+
+    section {
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line);
+    }
+
+    section:first-child { padding-top: 0; }
+
+    h2 {
+      margin: 0 0 12px;
+      font-size: 27px;
+      line-height: 1.25;
+      letter-spacing: 0;
+    }
+
+    h3 {
+      margin: 24px 0 8px;
+      font-size: 20px;
+      letter-spacing: 0;
+    }
+
+    p { margin: 10px 0; }
+    ul, ol { padding-left: 22px; }
+    li + li { margin-top: 5px; }
+
+    .visual {
+      margin: 20px 0;
+      padding: 18px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .flow {
+      display: grid;
+      grid-template-columns: repeat(4, minmax(130px, 1fr));
+      gap: 10px;
+      align-items: stretch;
+    }
+
+    .step {
+      min-height: 86px;
+      padding: 12px;
+      border: 1px solid rgba(11, 114, 133, .23);
+      border-radius: 8px;
+      background: var(--soft);
+      color: #164e63;
+      font-weight: 720;
+    }
+
+    .step span {
+      display: block;
+      margin-bottom: 6px;
+      color: var(--accent);
+      font-size: 13px;
+    }
+
+    .grid-2 {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 16px;
+    }
+
+    .box {
+      padding: 16px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .box strong {
+      display: block;
+      margin-bottom: 8px;
+    }
+
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      margin: 16px 0;
+      overflow-wrap: anywhere;
+      background: var(--panel);
+    }
+
+    th, td {
+      padding: 11px 12px;
+      border: 1px solid var(--line);
+      vertical-align: top;
+      text-align: left;
+    }
+
+    th {
+      background: var(--soft);
+      color: #164e63;
+    }
+
+    pre {
+      overflow-x: auto;
+      padding: 15px;
+      border-radius: 8px;
+      background: var(--code);
+      color: #f8fafc;
+      font-size: 14px;
+      line-height: 1.5;
+    }
+
+    code {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: .95em;
+    }
+
+    .callout {
+      margin: 18px 0;
+      padding: 16px;
+      border-left: 4px solid var(--accent-2);
+      border-radius: 6px;
+      background: var(--soft-2);
+    }
+
+    .sources {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .source {
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+      font-size: 14px;
+    }
+
+    .timeline {
+      display: grid;
+      gap: 10px;
+      margin: 18px 0;
+    }
+
+    .timeline-item {
+      display: grid;
+      grid-template-columns: 104px minmax(0, 1fr);
+      gap: 14px;
+      align-items: start;
+      padding: 12px;
+      border: 1px solid var(--line);
+      border-radius: 8px;
+      background: var(--panel);
+    }
+
+    .timeline-item b { color: var(--accent); }
+
+    .footer {
+      padding: 28px 24px;
+      color: var(--muted);
+      text-align: center;
+    }
+
+    @media (max-width: 900px) {
+      .content { display: block; }
+      nav {
+        position: static;
+        margin-bottom: 28px;
+      }
+      .flow,
+      .grid-2,
+      .sources {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+</head>
+<body>
+  <header class="hero">
+    <div class="hero-inner">
+      <p class="eyebrow">Codex 客户端教程大纲</p>
+      <h1>从会用到用得稳：Codex 客户端系统入门</h1>
+      <p class="subtitle">面向已经用 Codex 客户端做过项目的人，补齐界面地图、设置、需求表达、AGENTS.md、权限安全、预览验收和项目交付闭环。</p>
+      <div class="meta-row" aria-label="教程标签">
+        <span class="pill">主线：Codex 客户端</span>
+        <span class="pill">不是 CLI 教程</span>
+        <span class="pill">适合团队新人培训</span>
+        <span class="pill">目标：可预览、可验证、可交付</span>
+      </div>
+    </div>
+  </header>
+
+  <div class="content">
+    <nav aria-label="目录">
+      <h2>目录</h2>
+      <a href="#overview">0. 客户端工作流</a>
+      <a href="#map">1. 客户端地图</a>
+      <a href="#settings">2. 设置篇</a>
+      <a href="#prompting">3. 需求表达</a>
+      <a href="#agents">4. AGENTS.md</a>
+      <a href="#security">5. 权限安全</a>
+      <a href="#preview">6. 预览验收</a>
+      <a href="#practice">7. 项目实战</a>
+      <a href="#tips">8. 高效技巧</a>
+      <a href="#appendix">9. 附录</a>
+      <a href="#sources">官方参考</a>
+    </nav>
+
+    <main>
+      <section id="overview">
+        <h2>0. 教程总览：客户端里的完整工作流</h2>
+        <p>这份教程不从终端命令开始，而是从真实的 Codex 客户端使用场景开始：打开客户端、选择项目、发起需求、审阅过程、打开预览、完成交付。</p>
+        <div class="visual">
+          <div class="flow" role="img" aria-label="Codex 客户端学习路径">
+            <div class="step"><span>01</span>打开客户端并选择项目</div>
+            <div class="step"><span>02</span>发起一条好需求</div>
+            <div class="step"><span>03</span>让 Codex 先分析</div>
+            <div class="step"><span>04</span>审阅命令和文件改动</div>
+            <div class="step"><span>05</span>打开预览并验收</div>
+            <div class="step"><span>06</span>总结交付和复盘</div>
+            <div class="step"><span>07</span>沉淀到 AGENTS.md</div>
+            <div class="step"><span>08</span>形成团队工作流</div>
+          </div>
+        </div>
+        <div class="callout">
+          <strong>核心心智模型：</strong>Codex 客户端不是一个“聊天框加代码生成器”，而是一个可协作的工程工作台。你给目标和边界，Codex 负责读项目、改文件、跑命令、打开预览、解释结果；你负责把关方向、权限和验收。
+        </div>
+      </section>
+
+      <section id="map">
+        <h2>1. 客户端地图篇：先知道每个区域负责什么</h2>
+        <h3>1.1 打开客户端后先认识这些</h3>
+        <div class="grid-2">
+          <div class="box"><strong>线程</strong>一次任务或一组相关任务的上下文。尽量一个线程解决一个明确目标。</div>
+          <div class="box"><strong>项目/工作区</strong>Codex 当前能读取和修改的代码范围，开始前要确认目录选对。</div>
+          <div class="box"><strong>输入框</strong>给目标、补充约束、纠偏、要求验证的地方。</div>
+          <div class="box"><strong>执行过程</strong>读取文件、运行命令、编辑文件、打开浏览器都会留下过程。</div>
+          <div class="box"><strong>文件改动</strong>重点审阅 Codex 改了什么，是否超出需求。</div>
+          <div class="box"><strong>预览地址</strong>前端、文档或静态页面最终都应能打开检查。</div>
+        </div>
+        <h3>1.2 客户端用户最常用的 8 个动作</h3>
+        <table>
+          <thead>
+            <tr><th>动作</th><th>什么时候用</th><th>你要关注什么</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>新建/继续线程</td><td>开始一个需求或接着做旧任务</td><td>一个线程不要混太多目标。</td></tr>
+            <tr><td>选择项目目录</td><td>让 Codex 读写某个仓库</td><td>确认目录选对。</td></tr>
+            <tr><td>发送需求</td><td>描述目标和验收标准</td><td>说清楚不要改什么。</td></tr>
+            <tr><td>追加补充</td><td>Codex 跑偏或你想到新约束</td><td>及时纠偏。</td></tr>
+            <tr><td>审批命令</td><td>安装依赖、跑服务、联网等</td><td>不懂的命令先让它解释。</td></tr>
+            <tr><td>查看文件改动</td><td>Codex 修改后</td><td>看是否有无关改动。</td></tr>
+            <tr><td>打开预览</td><td>前端或文档任务完成后</td><td>桌面端和移动端都要看。</td></tr>
+            <tr><td>要求复盘</td><td>任务结束后</td><td>把重复规则沉淀到 AGENTS.md。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="settings">
+        <h2>2. 设置篇：把 Codex 客户端调成适合自己的工作台</h2>
+        <table>
+          <thead>
+            <tr><th>设置区域</th><th>推荐做法</th><th>为什么重要</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>General</td><td>设置文件打开方式、输出显示偏好、多行输入习惯</td><td>减少日常摩擦。</td></tr>
+            <tr><td>Notifications</td><td>开启任务完成提醒</td><td>长任务不用一直盯着。</td></tr>
+            <tr><td>Appearance</td><td>选择舒服的主题、字体、强调色</td><td>客户端会长时间使用。</td></tr>
+            <tr><td>Agent configuration</td><td>保持默认权限起步，再按项目调整</td><td>初学阶段更稳。</td></tr>
+            <tr><td>Git</td><td>统一分支名、commit message、PR 描述偏好</td><td>团队协作更一致。</td></tr>
+            <tr><td>Integrations & MCP</td><td>只连接真正常用的工具</td><td>避免权限和上下文变复杂。</td></tr>
+            <tr><td>Browser use</td><td>允许常用本地预览地址</td><td>前端项目验收更顺。</td></tr>
+            <tr><td>Personalization</td><td>选择默认性格并写自定义指令</td><td>让 Codex 按你的偏好工作。</td></tr>
+          </tbody>
+        </table>
+        <h3>2.1 Personalization 怎么写才有用</h3>
+        <pre><code>每次收到我的需求后，先用 2-4 句话说明你对需求的理解和影响范围，再开始实现。
+完成实现后必须给出：改动摘要、验证结果、当前可预览地址、其他建议。
+不要做无关重构。修改前请优先阅读项目现有写法并沿用。</code></pre>
+        <div class="callout">客户端用户不需要一开始就学习 <code>config.toml</code>。初学阶段优先使用 Settings；熟悉后再了解个人配置和项目配置。</div>
+      </section>
+
+      <section id="prompting">
+        <h2>3. 需求表达篇：在客户端里发一条“能交付”的需求</h2>
+        <h3>3.1 第一条消息模板</h3>
+        <pre><code>请先分析再实现。
+
+目标：
+我要你实现/修复/优化什么。
+
+上下文：
+相关页面、文件、业务规则、已有问题。
+
+边界：
+不要改什么，不要重构什么，哪些行为必须保持。
+
+验收：
+需要跑哪些测试，或者我应该通过哪个预览地址检查。
+
+交付：
+最后请给我改动摘要、验证结果、当前可预览地址和其他建议。</code></pre>
+        <h3>3.2 一个更像真实客户端需求的例子</h3>
+        <pre><code>请先分析再实现。
+
+目标：
+优化价格页在移动端的卡片排版。
+
+边界：
+不要改接口和价格数据，不要重做整体视觉风格。
+
+验收：
+桌面端和移动端都要检查，重点看按钮文字是否溢出、卡片高度是否跳动。
+
+交付：
+完成后打开本地预览，给我可预览地址，并总结改动和验证结果。</code></pre>
+        <h3>3.3 中途怎么纠偏</h3>
+        <pre><code>先暂停实现，解释一下你为什么要改这个文件。</code></pre>
+        <pre><code>这个方向不对，请回到原需求：只修移动端排版，不要调整桌面端视觉。</code></pre>
+        <pre><code>在继续之前，请先列出你已经改过的文件和每个文件的目的。</code></pre>
+      </section>
+
+      <section id="agents">
+        <h2>4. AGENTS.md 篇：让客户端每次都记住项目规则</h2>
+        <p><code>AGENTS.md</code> 是给 Codex 看的项目说明书。你不用每次重复告诉它项目怎么启动、怎么测试、怎么验收，这些规则可以写进去，让 Codex 每次进入项目时自动参考。</p>
+        <h3>4.1 适合写进去的内容</h3>
+        <ul>
+          <li>项目结构和关键目录。</li>
+          <li>本地启动、构建、测试、lint 命令。</li>
+          <li>设计规范和组件复用要求。</li>
+          <li>不允许改动的区域。</li>
+          <li>权限、安全、数据相关注意事项。</li>
+          <li>每次交付必须包含的内容。</li>
+        </ul>
+        <h3>4.2 客户端用户模板</h3>
+        <pre><code># AGENTS.md
+
+## 客户端工作流要求
+- 收到需求后，先分析理解，再开始实现。
+- 实现前优先阅读现有代码和设计风格。
+- 不做无关重构，不覆盖用户已有改动。
+- 涉及前端页面时，完成后必须提供当前可预览地址。
+
+## 交付要求
+- 最终回复包含：改动摘要、验证结果、当前可预览地址、其他建议。
+- 如果无法运行测试或预览，说明原因和风险。</code></pre>
+        <h3>4.3 让 Codex 帮你维护</h3>
+        <pre><code>这次任务中有哪些规则值得沉淀到 AGENTS.md？请给出可直接追加的内容。</code></pre>
+      </section>
+
+      <section id="security">
+        <h2>5. 权限安全篇：客户端里哪些弹窗要认真看</h2>
+        <div class="grid-2">
+          <div class="box"><strong>Sandbox</strong>限制 Codex 能访问和修改哪些文件。</div>
+          <div class="box"><strong>Approval</strong>Codex 运行某些命令前需要你确认。</div>
+          <div class="box"><strong>Network access</strong>控制是否允许访问外网、下载依赖、查资料或调用服务。</div>
+          <div class="box"><strong>你的角色</strong>给 Codex 安全边界，让它先解释再执行高风险操作。</div>
+        </div>
+        <table>
+          <thead>
+            <tr><th>Codex 想做什么</th><th>建议</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>读取项目文件</td><td>通常允许。</td></tr>
+            <tr><td>修改工作区内需求相关文件</td><td>通常允许，但要看 diff。</td></tr>
+            <tr><td>启动本地开发服务</td><td>通常允许。</td></tr>
+            <tr><td>安装依赖</td><td>先让它解释为什么需要。</td></tr>
+            <tr><td>联网搜索或下载</td><td>确认是否必要。</td></tr>
+            <tr><td>删除文件</td><td>谨慎，先问清影响。</td></tr>
+            <tr><td>修改密钥、生产配置、支付、权限逻辑</td><td>保守处理，逐步审查。</td></tr>
+            <tr><td>git reset、强推、清理大量文件</td><td>不要轻易允许。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="preview">
+        <h2>6. 预览验收篇：客户端用户一定要学会看结果</h2>
+        <h3>6.1 什么任务必须要预览</h3>
+        <ul>
+          <li>前端页面。</li>
+          <li>静态 HTML 教程。</li>
+          <li>图片、样式、布局相关修改。</li>
+          <li>表单、弹窗、导航、支付流程等用户路径。</li>
+          <li>文档或教程页面。</li>
+        </ul>
+        <h3>6.2 让 Codex 主动给预览地址</h3>
+        <pre><code>完成后请启动或打开预览，并在最终回复里给我当前可预览地址。</code></pre>
+        <pre><code>请不要只告诉我代码改了，请打开预览确认用户实际看到的效果。</code></pre>
+        <h3>6.3 验收重点</h3>
+        <table>
+          <thead>
+            <tr><th>类型</th><th>重点</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>页面布局</td><td>是否溢出、重叠、错位、移动端不可读。</td></tr>
+            <tr><td>交互功能</td><td>按钮、表单、弹窗、导航是否能用。</td></tr>
+            <tr><td>数据状态</td><td>loading、empty、error、长文本是否正常。</td></tr>
+            <tr><td>视觉一致性</td><td>是否沿用已有设计系统。</td></tr>
+            <tr><td>文案</td><td>是否清楚、短、没有教程腔。</td></tr>
+          </tbody>
+        </table>
+      </section>
+
+      <section id="practice">
+        <h2>7. 项目实战篇：用客户端跑完一次真实交付</h2>
+        <p>建议选一个真实但范围小的任务，例如修复移动端 UI、给表单加校验，或者把一份大纲改成可预览的教程页面。</p>
+        <div class="timeline">
+          <div class="timeline-item"><b>第 1 步</b><span>先让 Codex 阅读项目结构和相关文件，不急着改。</span></div>
+          <div class="timeline-item"><b>第 2 步</b><span>确认方向后开始实现，要求保持改动范围小。</span></div>
+          <div class="timeline-item"><b>第 3 步</b><span>要求打开预览，检查桌面端和移动端。</span></div>
+          <div class="timeline-item"><b>第 4 步</b><span>让 Codex 自查无关改动、遗漏状态和未验证项。</span></div>
+          <div class="timeline-item"><b>第 5 步</b><span>最终交付：摘要、验证结果、预览地址、其他建议。</span></div>
+        </div>
+        <pre><code>请先阅读项目结构、启动方式和与这个需求相关的文件。先不要改代码，告诉我你的理解、涉及文件、风险点和验证方式。</code></pre>
+        <pre><code>方向确认。请开始实现，保持改动范围小，沿用现有组件和样式。完成后运行相关检查。</code></pre>
+        <pre><code>请打开预览，检查桌面端和移动端。重点看是否有文字溢出、布局错位、交互不可用。</code></pre>
+      </section>
+
+      <section id="tips">
+        <h2>8. 高效技巧篇：客户端用户的进阶习惯</h2>
+        <h3>8.1 适合交给 Codex 的任务</h3>
+        <ul>
+          <li>读代码并总结模块关系。</li>
+          <li>修小 bug。</li>
+          <li>补测试。</li>
+          <li>做第一轮 code review。</li>
+          <li>根据报错定位原因。</li>
+          <li>生成教程、说明文档、变更摘要。</li>
+          <li>把零散规则整理成 <code>AGENTS.md</code>。</li>
+        </ul>
+        <h3>8.2 每次任务结束后做 3 件事</h3>
+        <pre><code>请总结这次任务：
+1. 哪些做法有效？
+2. 哪些问题下次要避免？
+3. 哪些规则值得写进 AGENTS.md 或个人自定义指令？</code></pre>
+      </section>
+
+      <section id="appendix">
+        <h2>9. 附录：CLI 和其他入口放到最后</h2>
+        <p>这套教程面向 Codex 客户端用户，所以 CLI 不作为主线。可以在附录里简短说明：CLI 适合习惯终端的开发者，IDE Extension 适合和编辑器深度结合，Web/Cloud 适合云端并行任务或 GitHub 任务。</p>
+        <div class="callout">对本教程读者来说，第一优先级是掌握客户端里的：需求表达、权限确认、文件改动审阅、预览验收、最终交付。</div>
+      </section>
+
+      <section id="sources">
+        <h2>官方参考</h2>
+        <div class="sources">
+          <a class="source" href="https://developers.openai.com/codex/learn/best-practices">Codex Best practices</a>
+          <a class="source" href="https://developers.openai.com/codex/app/settings">Codex app settings</a>
+          <a class="source" href="https://developers.openai.com/codex/guides/agents-md">Custom instructions with AGENTS.md</a>
+          <a class="source" href="https://developers.openai.com/codex/config-basic">Config basics</a>
+          <a class="source" href="https://developers.openai.com/codex/agent-approvals-security">Agent approvals & security</a>
+          <a class="source" href="https://developers.openai.com/codex/quickstart">Codex Quickstart</a>
+        </div>
+      </section>
+    </main>
+  </div>
+
+  <footer class="footer">
+    当前版本：Codex 客户端优先的大纲版，可继续扩写为正式图文教程、团队培训稿或交互式页面。
+  </footer>
+</body>
+</html>
